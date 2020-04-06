@@ -1,8 +1,9 @@
 #include<iostream>
 #include<stdlib.h>
 #include "Queue.h"
+using namespace std;
 
-struct node *root=NULL;
+struct node *root = NULL;
 
 void Treecreate()
 {
@@ -44,46 +45,33 @@ void Treecreate()
     }
 }
 
-void preorder(struct node *p)
+void LevelOrder(struct node *root)
 {
-    if(p)
-    {
-        cout<<p->data<<" ";
-        preorder(p->lchild);
-        preorder(p->rchild);
-    }
-}
+    struct queue q;
+    create(&q,100);
 
-void inorder(struct node *p)
-{
-    if(p)
-    {
-        inorder(p->lchild);
-        cout<<p->data<<" ";
-        inorder(p->rchild);
-    }
-}
+    cout<<root->data<<" ";;
+    enque(&q,root);
 
-void postorder(struct node *p)
-{
-    if(p)
+    while(!isEmpty(q))
     {
-        postorder(p->lchild);
-        postorder(p->rchild);
-        cout<<p->data<<" ";
+        root = deque(&q);
+        if(root->lchild)
+        {
+            cout<<root->lchild->data<<" ";
+            enque(&q,root->lchild);
+        }
+        if(root->rchild)
+        {
+            cout<<root->rchild->data<<" ";
+            enque(&q,root->rchild);
+        }
     }
 }
 
 int main()
 {
     Treecreate();
-    cout<<"Preorder is : ";
-    preorder(root);
-    cout<<"\n";
-    cout<<"Inorder is : ";
-    inorder(root);
-    cout<<"\n";
-    cout<<"Postorder is : ";
-    postorder(root);
+    LevelOrder(root);
     return 0;
 }
