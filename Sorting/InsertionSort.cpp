@@ -24,7 +24,9 @@ int main()
 
     Insertion(A,n);
 
-    for(i = 0;i<n;i++)
+    for(i = 0;i<n;i++){
         cout<<A[i]<<" ";
+    }
+
     return 0;
 }
